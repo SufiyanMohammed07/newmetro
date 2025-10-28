@@ -1,0 +1,127 @@
+body {
+  margin: 0;
+  background-color: #4b5866;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.admin-login-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.left-image {
+  display: none;
+}
+
+.admin-login-box {
+  flex: none;
+
+  width: 90%;
+  max-width: 500px;
+
+  background-color: #dee2e6;
+
+  padding: 60px 40px;
+  margin: 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+
+  border-radius: 20px;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.admin-login-box h2 {
+  margin-top: 0;
+  margin-bottom: 5px;
+
+  color: #007bff;
+  font-size: 32px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.admin-login-box p:first-of-type {
+  color: #6c757d;
+  font-size: 16px;
+  margin-bottom: 40px;
+}
+
+.admin-login-box form {
+  width: 100%;
+  max-width: 380px;
+}
+
+.admin-login-box input {
+  width: 100%;
+  padding: 12px 0;
+  margin-bottom: 30px;
+
+  border: none;
+  border-bottom: 1px solid #99a3ad;
+
+  background-color: transparent;
+  outline: none;
+  font-size: 16px;
+  color: #4b5866;
+  text-align: center;
+  transition: border-bottom-color 0.3s;
+}
+
+.admin-login-box input:focus {
+  border-bottom-color: #4b5866;
+}
+
+.admin-login-box input::placeholder {
+  color: #6c757d;
+  font-size: 16px;
+}
+
+.admin-login-box button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  font-size: 18px;
+  font-weight: 500;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 20px;
+}
+
+.admin-login-box button[type="submit"]:hover {
+  background-color: #3e4a55;
+}
+
+.error-msg {
+  color: #dc3545;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+@media (max-width: 600px) {
+  .admin-login-box {
+    padding: 40px 20px;
+    margin: 15px;
+  }
+
+  .admin-login-box h2 {
+    font-size: 28px;
+  }
+
+  .admin-login-box form {
+    max-width: 100%;
+  }
+}
