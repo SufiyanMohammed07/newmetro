@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import './Account.css';
+import "./Account.css";
 
 function Login() {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -16,13 +16,19 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:3030/api/auth/login", formData);
+      const res = await axios.post(
+        "http://localhost:3030/api/auth/login",
+        formData
+      );
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
-       setMessage("Welcome back to Alifoot!");
+      setMessage("Welcome back to Alifoot!");
 
-    setTimeout(() => navigate("/"), 1500);
-      // navigate("/");
+      setTimeout(() => {
+        navigate("/");
+        window.location.reload();
+      }, 1500);
+
     } catch (err) {
       setMessage(err.response?.data?.msg || "Login failed");
     }
@@ -31,7 +37,11 @@ function Login() {
   return (
     <div className="auth-container">
       <h2>Login to Your Account</h2>
-      {message && <p style={{ color: message.includes("Welcome") ? "green" : "red" }}>{message}</p>}
+      {message && (
+        <p style={{ color: message.includes("Welcome") ? "green" : "red" }}>
+          {message}
+        </p>
+      )}
 
       <form onSubmit={handleSubmit} className="auth-form">
         <input

@@ -9,7 +9,7 @@ import Register from "./pages/Register";
 import AccountDetails from "./pages/AccountDetails";
 import { Navigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"; // ✅ Import CSS
+import "react-toastify/dist/ReactToastify.css"; 
 // import Phone from "./pages/Phone";
 
 

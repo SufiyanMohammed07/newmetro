@@ -15,11 +15,12 @@ const Navbar = () => {
     if (token) setIsLoggedIn(true);
   }, []);
 
-  const handleLogout = () => {
-    localStorage.removeItem("isLoggedIn");
-    setIsLoggedIn(false);
-    navigate("/");
-  };
+  // const handleLogout = () => {
+  //   localStorage.removeItem("isLoggedIn");
+  //   setIsLoggedIn(false);
+  //   window.location.reload();
+  //   navigate("/");
+  // };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
