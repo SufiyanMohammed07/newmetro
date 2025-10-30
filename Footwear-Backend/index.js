@@ -76,7 +76,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import cors from "cors";
+// import cors from "cors";
 
 // Route imports
 import authRoutes from "./routes/authRoutes.js";
@@ -109,13 +109,13 @@ const port = 3030;
 //     credentials: true,
 //   })
 // );
-app.use(
-  cors({
-    origin: ["https://newmetro.online", "https://www.newmetro.online"],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: ["https://newmetro.online", "https://www.newmetro.online"],
+//     methods: ["GET", "POST", "PUT", "DELETE"],
+//     credentials: true,
+//   })
+// );
 
 // Handle preflight requests
 // app.options("*", cors());
