@@ -91,27 +91,34 @@ const app = express();
 const port = 3030;
 
 // -------------------- CORS Configuration --------------------
-const allowedOrigins = [
-  "https://newmetro.online",
-  "https://www.newmetro.online",
-  "http://localhost:5173" // for local testing
-];
+// const allowedOrigins = [
+//   "https://newmetro.online",
+//   "https://www.newmetro.online",
+//   "http://localhost:5173" // for local testing
+// ];
 
+// app.use(
+//   cors({
+//     origin: function (origin, callback) {
+//       if (!origin || allowedOrigins.includes(origin)) {
+//         callback(null, true);
+//       } else {
+//         callback(new Error("Not allowed by CORS"));
+//       }
+//     },
+//     credentials: true,
+//   })
+// );
 app.use(
   cors({
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
+    origin: ["https://newmetro.online", "https://www.newmetro.online"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
 );
 
 // Handle preflight requests
-app.options("*", cors());
+// app.options("*", cors());
 
 // -------------------- Express Middleware --------------------
 app.use(express.json());
