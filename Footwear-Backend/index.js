@@ -10,49 +10,11 @@ import otpRoutes from "./routes/otpRoutes.js";
 
 dotenv.config();
 const app = express();
-// app.use(cors({
-//   origin: ["http://localhost:5173", "http://localhost:5175"],
-//   credentials: true
-// }));
 
-// const allowedOrigins = [
-//   "https://newmetro.online",  // frontend domain
-//   "http://localhost:3030"     // for local testing
-// ];
-
-// app.use(
-//   cors({
-//     origin: allowedOrigins,
-//     methods: ["GET", "POST", "PUT", "DELETE"],
-//     credentials: true,
-//   })
-// );
-
-// app.use(
-//   cors({
-//     origin: function (origin, callback) {
-//       if (!origin || allowedOrigins.includes(origin)) {
-//         callback(null, true);
-//       } else {
-//         callback(new Error("Not allowed by CORS"));
-//       }
-//     },
-//     credentials: true,
-//     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-//   })
-// );
-// app.use(
-//   cors({
-//     origin: "https://newmetro.online",   // allow your frontend explicitly
-//     credentials: true,
-//     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-//   })
-// );
-// ✅ CORS configuration
 const allowedOrigins = [
   "https://newmetro.online",
   "https://www.newmetro.online",
-  "http://localhost:5173" // optional, only for local testing
+  "http://localhost:5173"
 ];
 
 app.use(
@@ -70,7 +32,6 @@ app.use(
 
 
 // Handle preflight requests
-app.options("*", cors());
 
 app.use(express.json());
 const port = 3030;
