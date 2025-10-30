@@ -14,9 +14,15 @@ const app = express();
 //   origin: ["http://localhost:5173", "http://localhost:5175"],
 //   credentials: true
 // }));
+
+const allowedOrigins = [
+  "https://newmetro.online",  // frontend domain
+  "http://localhost:3030"     // for local testing
+];
+
 app.use(
   cors({
-    origin: "https://newmetro.online",
+    origin: allowedOrigins,
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
