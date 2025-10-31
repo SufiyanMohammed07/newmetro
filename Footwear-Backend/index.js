@@ -76,7 +76,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-// import cors from "cors";
+import cors from "cors";
 
 // Route imports
 import authRoutes from "./routes/authRoutes.js";
@@ -91,34 +91,25 @@ const app = express();
 const port = 3030;
 
 // -------------------- CORS Configuration --------------------
-// const allowedOrigins = [
-//   "https://newmetro.online",
-//   "https://www.newmetro.online",
-//   "http://localhost:5173" // for local testing
-// ];
+const allowedOrigins = [
+  "https://newmetro.online",
+  "https://www.newmetro.online",
+  "http://localhost:5175" // for local testing
+];
 
-// app.use(
-//   cors({
-//     origin: function (origin, callback) {
-//       if (!origin || allowedOrigins.includes(origin)) {
-//         callback(null, true);
-//       } else {
-//         callback(new Error("Not allowed by CORS"));
-//       }
-//     },
-//     credentials: true,
-//   })
-// );
-// app.use(
-//   cors({
-//     origin: ["https://newmetro.online", "https://www.newmetro.online"],
-//     methods: ["GET", "POST", "PUT", "DELETE"],
-//     credentials: true,
-//   })
-// );
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+  })
+);
 
-// Handle preflight requests
-// app.options("*", cors());
 
 // -------------------- Express Middleware --------------------
 app.use(express.json());
