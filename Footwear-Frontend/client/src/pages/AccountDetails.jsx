@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import axiosInstance from "../utils/axiosInstance";
 
 function AccountDetails() {
   const [user, setUser] = useState(null);
@@ -26,8 +27,8 @@ function AccountDetails() {
     e.preventDefault();
     try {
       const token = localStorage.getItem("token"); // for auth
-      const res = await axios.put(
-        `http://localhost:3030/api/auth/${user._id}`,
+      const res = await axiosInstance.put(
+        `/auth/${user._id}`,
         formData,
         { headers: { Authorization: `Bearer ${token}` } }
       );

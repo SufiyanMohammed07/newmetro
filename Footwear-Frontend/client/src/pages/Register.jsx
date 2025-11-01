@@ -4,6 +4,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import './Account.css';
 
+import axiosInstance from "../utils/axiosInstance";
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -22,7 +23,7 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:3030/api/auth/register", formData);
+      const res = await axiosInstance.post("/auth/register", formData);
       setMessage("Account created successfully!");
       navigate("/login");
     } catch (err) {

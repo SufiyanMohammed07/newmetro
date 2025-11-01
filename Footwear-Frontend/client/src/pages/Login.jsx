@@ -23,7 +23,7 @@ function Login() {
       );
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
-      setMessage("Welcome back to Alifoot!");
+      setMessage("Welcome back to New Metro!");
 
       setTimeout(() => {
         navigate("/");

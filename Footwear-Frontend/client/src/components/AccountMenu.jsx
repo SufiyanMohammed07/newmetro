@@ -34,7 +34,6 @@ const AccountMenu = ({ isLoggedIn, setIsLoggedIn }) => {
     localStorage.removeItem("user");
     setIsLoggedIn(false);
     setShowMenu(false);
-    // setTimeout(()=>navigate("/"),1500);
      localStorage.setItem("logoutMessage", "Successfully Logged Out! Come Back Again!!");
      setTimeout(() => navigate("/"), 300);
       window.location.reload();
