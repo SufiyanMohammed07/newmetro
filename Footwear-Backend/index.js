@@ -93,7 +93,7 @@ const port = 3030;
 // -------------------- CORS Configuration --------------------
 const allowedOrigins = [
   "https://newmetro.online",
-  "https://www.newmetro.online",
+  // "https://www.newmetro.online",
   "http://localhost:5175" // for local testing
 ];
 
