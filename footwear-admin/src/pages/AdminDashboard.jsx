@@ -41,7 +41,7 @@ const AdminDashboard = () => {
 
     try {
       await axiosInstance.post("/products/add", formData, {
-        headers: {
+      headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`,
         },

@@ -12,6 +12,8 @@ const AdminLogin = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
+  console.log("Base URL:", axiosInstance.defaults.baseURL);
+
       const res = await axiosInstance.post("/auth/login", { email, password });
       if (!res.data.user.isAdmin) {
         setMsg("Access denied: Not an admin");

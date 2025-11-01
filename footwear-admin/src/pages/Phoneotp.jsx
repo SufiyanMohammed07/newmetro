@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Phoneotp.css";
+import axiosInstance from "../utils/axiosInstance";
 
 const Phoneotp = () => {
   const [phone, setPhone] = useState("");
@@ -15,7 +16,7 @@ const Phoneotp = () => {
   const handleSendOtp = async () => {
     if (!phone) return setMessage("Please enter your phone number.");
     try {
-      const res = await axios.post("http://localhost:3030/api/otp/send-otp", {
+      const res = await axiosInstance.post("/otp/send-otp", {
         phone,
       });
       if (res.status === 200) {
@@ -30,7 +31,7 @@ const Phoneotp = () => {
   const handleVerifyOtp = async () => {
     if (!otp) return setMessage("Please enter the OTP.");
     try {
-      const res = await axios.post("http://localhost:3030/api/otp/verify-otp", {
+      const res = await axiosInstance.post("/otp/verify-otp", {
         phone,
         code: otp,
       });
@@ -50,8 +51,8 @@ const Phoneotp = () => {
     e.preventDefault();
     if (!phone || !password) return setMessage("All fields are required.");
     try {
-      const res = await axios.post(
-        "http://localhost:3030/api/auth/login-phone",
+      const res = await axiosInstance.post(
+        "/auth/login-phone",
         { phone, password }
       );
       localStorage.setItem("token", res.data.token);
