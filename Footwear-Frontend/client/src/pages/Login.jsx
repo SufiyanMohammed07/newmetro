@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import axiosInstance from "../utils/axiosInstance";
 import "./Account.css";
 
 function Login() {
@@ -16,8 +17,8 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
-        "http://localhost:3030/api/auth/login",
+      const res = await axiosInstance.post(
+        "/auth/login",
         formData
       );
       localStorage.setItem("token", res.data.token);
