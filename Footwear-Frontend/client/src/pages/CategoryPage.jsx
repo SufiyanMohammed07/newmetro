@@ -21,14 +21,17 @@ const CategoryPage = () => {
       try {
         setLoading(true);
         // let url = `http://localhost:3030/api/products/category/${categoryName}`;
-        let url = `/products/category/${categoryName}`;
+        // let url = `/products/category/${categoryName}`;
+
         const params = [];
 
         if (subCategory) params.push(`subCategory=${subCategory}`);
         if (params.length) url += "?" + params.join("&");
 
         // const res = await axiosInstance.get(url);
-         const res = await axiosInstance.get(url, { params });
+        //  const res = await axiosInstance.get(url, { params });
+        const res = await axiosInstance.get(`/products/category/${categoryName}`,{params});
+
         let data = res.data;
 
         // Apply local sorting by price or name
