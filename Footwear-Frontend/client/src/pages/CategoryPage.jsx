@@ -31,6 +31,7 @@ const CategoryPage = () => {
         // const res = await axiosInstance.get(url);
         //  const res = await axiosInstance.get(url, { params });
         const res = await axiosInstance.get(`/products/category/${categoryName}`,{params});
+        //checking
 
         let data = res.data;
 
