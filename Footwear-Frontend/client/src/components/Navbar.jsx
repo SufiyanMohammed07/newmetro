@@ -4,6 +4,7 @@ import styles from "./Navbar.module.css";
 import AccountMenu from "./AccountMenu";
 import { toast } from "react-toastify";
 
+
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -14,7 +15,6 @@ const Navbar = () => {
     const token = localStorage.getItem("token");
     if (token) setIsLoggedIn(true);
   }, []);
-
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -45,7 +45,7 @@ const Navbar = () => {
         }}
       >
         <p>Closure Sale ends today ✨</p>
-        <div className="logo">Buy 2 - Get 10% | Buy 4 - Get 25%</div>
+        <div className="logo">uy 2 - Get 10% | Buy 4 - Get 25%</div>
       </div>
 
       <header className={styles.header}>
@@ -98,51 +98,94 @@ const Navbar = () => {
             </li>
             <li>
               <Link
-                to="/"
-                className={getLinkClass("/for-her")}
+                to="/category/for-her"
+                className={getLinkClass("/category/for-her")}
                 onClick={handleLinkClick}
               >
                 For Her
               </Link>
             </li>
+
             <li>
               <Link
-                to="/"
-                className={getLinkClass("/for-him")}
+                to="/category/for-him"
+                className={getLinkClass("/category/for-him")}
                 onClick={handleLinkClick}
               >
                 For Him
               </Link>
             </li>
+
             <li>
-             
- <Link
-    to="#"
-    className={getLinkClass("/track-order")}
-    onClick={(e) => {
-      e.preventDefault();
-      const token = localStorage.getItem("token");
+              <Link
+                to="/category/kids"
+                className={getLinkClass("/category/kids")}
+                onClick={handleLinkClick}
+              >
+                Kidswear
+              </Link>
+            </li>
 
-      if (!token) {
-        toast.warning("Please log in to track your order!");
-        navigate("/login");
-      } else {
-        const user = JSON.parse(localStorage.getItem("user"));
-        const name = user?.name || "User";
-        const phone = user?.phone || "Not Provided";
+            <li>
+              <Link
+                to="/category/unisex"
+                className={getLinkClass("/category/unisex")}
+                onClick={handleLinkClick}
+              >
+                Unisex
+              </Link>
+            </li>
 
-        const message = `Hi, I want to track my order. My details are:\n\n 👤 Name: ${name}\n 📞 Phone: ${phone}`;
+            <li>
+              <Link
+                to="/category/school-shoes"
+                className={getLinkClass("/category/school-shoes")}
+                onClick={handleLinkClick}
+              >
+                School Shoes
+              </Link>
+            </li>
 
-        const whatsappUrl = `https://wa.me/919573800201?text=${encodeURIComponent(message)}`;
+            <li>
+              <Link
+                to="/category/accessories"
+                className={getLinkClass("/category/accessories")}
+                onClick={handleLinkClick}
+              >
+                Accessories
+              </Link>
+            </li>
 
-        window.open(whatsappUrl, "_blank");
-      }
+            <li>
+              <Link
+                to="#"
+                className={getLinkClass("/track-order")}
+                onClick={(e) => {
+                  e.preventDefault();
+                  const token = localStorage.getItem("token");
 
-      handleLinkClick();
-    }}
-  >
-    Track Your Order
-  </Link>
+                  if (!token) {
+                    toast.warning("Please log in to track your order!");
+                    navigate("/login");
+                  } else {
+                    const user = JSON.parse(localStorage.getItem("user"));
+                    const name = user?.name || "User";
+                    const phone = user?.phone || "Not Provided";
+
+                    const message = `Hi, I want to track my order. My details are:\n\n 👤 Name: ${name}\n 📞 Phone: ${phone}`;
+
+                    const whatsappUrl = `https://wa.me/919573800201?text=${encodeURIComponent(
+                      message
+                    )}`;
+
+                    window.open(whatsappUrl, "_blank");
+                  }
+
+                  handleLinkClick();
+                }}
+              >
+                Track Your Order
+              </Link>
             </li>
 
             <li>
