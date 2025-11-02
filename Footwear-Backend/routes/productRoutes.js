@@ -69,6 +69,29 @@ router.get("/:id", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+router.get("/category/:category", async (req, res) => {
+  try {
+    const { category } = req.params;
+    const { subCategory, minPrice, maxPrice } = req.query;
+
+    // Build dynamic filter
+    const filter = { category };
+    if (subCategory) filter.subCategory = subCategory;
+    if (minPrice || maxPrice) {
+      filter.price = {};
+      if (minPrice) filter.price.$gte = Number(minPrice);
+      if (maxPrice) filter.price.$lte = Number(maxPrice);
+    }
+
+    const products = await Product.find(filter);
+    res.json(products);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+
+
 
 router.delete("/:id", verifyToken, verifyAdmin, async (req, res) => {
   try {

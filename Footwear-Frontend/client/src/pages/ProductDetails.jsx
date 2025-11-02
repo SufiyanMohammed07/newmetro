@@ -14,7 +14,7 @@ const ProductDetails = () => {
   const [loading, setLoading] = useState(true);
 
   const whatsappNumber = "919573800201";
-  const isLoggedIn = !!localStorage.getItem("token");
+  const isLoggedIn = localStorage.getItem("token");
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -68,6 +68,34 @@ const ProductDetails = () => {
     slidesToScroll: 1,
     adaptiveHeight: true,
   };
+  const sizeOptions = {
+    "school-shoes": [
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12",
+      "13",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+    ],
+    "sports-shoes": ["6", "7", "8", "9", "10", "11"],
+    "formal-shoes": ["6", "7", "8", "9", "10", "11"],
+    sandals: ["5", "6", "7", "8", "9", "10"],
+  };
+
+  const sizes = sizeOptions[product.category?.toLowerCase()] || [];
 
   return (
     <div className="product-details-container">
@@ -109,13 +137,22 @@ const ProductDetails = () => {
 
           <div className="product-sizes">
             <h4>Available Sizes</h4>
-            <div className="size-options">
-              {["6", "7", "8", "9", "10", "11"].map((size) => (
+            <br />
+            {/* <div className="size-options">
+              {sizes.map((size) => (
                 <div key={size} className="size-box">
                   {size}
                 </div>
               ))}
-            </div>
+            </div> */}
+            <div className="size-options">
+  {sizes.map((size, index) => (
+    <div key={`${size}-${index}`} className="size-box">
+      {size}
+    </div>
+  ))}
+</div>
+
           </div>
 
           <button onClick={handleWhatsAppContact} className="whatsapp-button">

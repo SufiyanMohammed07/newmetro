@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import axiosInstance from "../utils/axiosInstance";
+import "./AccountDetails.css";
 
 function AccountDetails() {
   const [user, setUser] = useState(null);
@@ -26,7 +27,7 @@ function AccountDetails() {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      const token = localStorage.getItem("token"); // for auth
+      const token = localStorage.getItem("token"); 
       const res = await axiosInstance.put(
         `/auth/${user._id}`,
         formData,

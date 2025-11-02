@@ -10,6 +10,7 @@ import AccountDetails from "./pages/AccountDetails";
 import { Navigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"; 
+import CategoryPage from "./pages/CategoryPage";
 // import Phone from "./pages/Phone";
 
 
@@ -23,6 +24,8 @@ const App = () => {
          <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         {/* <Route path="/login-phone" element={<Phone/>}/> */}
+        <Route path="/category/:categoryName" element={<CategoryPage />} />
+
         <Route path="/account-details" element={<AccountDetails />} />
         <Route path="/product/:id" element={<ProductDetails />} />
       </Routes>

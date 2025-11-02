@@ -41,7 +41,7 @@ const AdminDashboard = () => {
 
     try {
       await axiosInstance.post("/products/add", formData, {
-      headers: {
+        headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${token}`,
         },
@@ -79,13 +79,27 @@ const AdminDashboard = () => {
           onChange={(e) => setName(e.target.value)}
           required
         />
-        <input
-          type="text"
-          placeholder="Category"
+        <select
           value={category}
           onChange={(e) => setCategory(e.target.value)}
           required
-        />
+          style={{
+            padding: "20px",
+            borderRadius: "5px",
+            border: "1px solid #ccc",
+            marginBottom: "10px",
+            height:"50px"
+          }}
+        >
+          <option value="">Select Category</option>
+          <option value="for-her">For Her</option>
+          <option value="for-him">For Him</option>
+          <option value="kids">Kidswear</option>
+          <option value="unisex">Unisex</option>
+          <option value="school-shoes">School Shoes</option>
+          <option value="accessories">Accessories</option>
+        </select>
+
         <input
           type="number"
           placeholder="Price"
