@@ -5,6 +5,7 @@ import styles from "./AdminDashboard.module.css";
 const AdminDashboard = () => {
   const [name, setName] = useState("");
   const [category, setCategory] = useState("");
+  const [subCategory, setSubCategory] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
   const [images, setImages] = useState([]);
@@ -34,6 +35,7 @@ const AdminDashboard = () => {
     const formData = new FormData();
     formData.append("name", name);
     formData.append("category", category);
+    formData.append("subCategory", subCategory);
     formData.append("price", price);
     formData.append("description", description);
 
@@ -79,7 +81,7 @@ const AdminDashboard = () => {
           onChange={(e) => setName(e.target.value)}
           required
         />
-        <select
+        {/* <select
           value={category}
           onChange={(e) => setCategory(e.target.value)}
           required
@@ -98,7 +100,59 @@ const AdminDashboard = () => {
           <option value="unisex">Unisex</option>
           <option value="school-shoes">School Shoes</option>
           <option value="accessories">Accessories</option>
-        </select>
+        </select> */}
+        <select
+  value={subCategory}
+  onChange={(e) => setSubCategory(e.target.value)}
+  required
+  style={{
+    padding: "20px",
+    borderRadius: "5px",
+    border: "1px solid #ccc",
+    marginBottom: "10px",
+    height: "50px"
+  }}
+>
+  <option value="">Select Sub Category</option>
+
+  {/* For Her */}
+  {category === "for-her" && (
+    <>
+      <option value="heels">Heels</option>
+      <option value="flats">Flats</option>
+      <option value="sandals">Sandals</option>
+    </>
+  )}
+
+  {/* For Him */}
+  {category === "for-him" && (
+    <>
+      <option value="formal">Formal</option>
+      <option value="casual">Casual</option>
+      <option value="sneakers">Sneakers</option>
+    </>
+  )}
+
+  {/* Kids */}
+  {category === "kids" && (
+    <>
+      <option value="boys">Boys</option>
+      <option value="girls">Girls</option>
+      <option value="toddlers">Toddlers</option>
+    </>
+  )}
+
+  {/* Others */}
+  {category === "unisex" && (
+    <>
+      <option value="casual">Casual</option>
+      <option value="sports">Sports</option>
+    </>
+  )}
+  {category === "school-shoes" && <option value="uniform">Uniform</option>}
+  {category === "accessories" && <option value="belts">Belts</option>}
+</select>
+
 
         <input
           type="number"
