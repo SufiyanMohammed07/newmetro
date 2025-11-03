@@ -2,11 +2,11 @@ import express from "express";
 import Product from "../models/Product.js";
 import { uploadToS3 } from "../utils/awsS3.js";
 import multer from "multer";
-const upload = multer({ storage: multer.memoryStorage() });
-// const upload = multer({
-//   storage: multer.memoryStorage(),
-//   limits: { fileSize: 10 * 1024 * 1024 }, 
-// });
+// const upload = multer({ storage: multer.memoryStorage() });
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 10 * 1024 * 1024 }, 
+});
 
 import { verifyToken } from "../utils/jwtMiddleware.js";
 import { verifyAdmin } from "../utils/adminMiddleware.js";
