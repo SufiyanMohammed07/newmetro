@@ -18,6 +18,8 @@ const allowedOrigins = [
   "https://newmetro.online",
   // "https://www.newmetro.online",
   "http://localhost:5175", 
+  "http://localhost:5173",
+  "https://admin-newmetro.onrender.com"
 ];
 
 app.use(
