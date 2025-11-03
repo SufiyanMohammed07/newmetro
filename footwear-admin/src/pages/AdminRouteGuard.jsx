@@ -24,6 +24,8 @@ const AdminRouteGuard = () => {
         console.error("Admin verification failed:", error.response?.data?.msg);
         localStorage.removeItem("token"); // Cleanup bad token
         setIsAuthenticated(false);
+        console.log("token");
+
       }
     };
 
