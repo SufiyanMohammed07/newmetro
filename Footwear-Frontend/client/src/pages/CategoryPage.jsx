@@ -10,6 +10,8 @@ const CategoryPage = () => {
   const [subCategory, setSubCategory] = useState("");
   const [sortOption, setSortOption] = useState("");
   const [priceOrder, setPriceOrder] = useState("");
+  const [maxPrice, setMaxPrice] = useState("");
+  const [minPrice, setMinPrice] = useState("");
   const navigate = useNavigate();
 
   const isLoggedIn = !!localStorage.getItem("token");
@@ -50,35 +52,43 @@ const CategoryPage = () => {
   //   };
   //   fetchProducts();
   // }, [categoryName, subCategory, priceOrder, sortOption]);
- useEffect(() => {
-  const fetchProducts = async () => {
-    try {
-      setLoading(true);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        setLoading(true);
 
-      const params = {};
-      if (subCategory) params.subCategory = subCategory;
-      if (minPrice && minPrice !== "") params.minPrice = minPrice;
-      if (maxPrice && maxPrice !== "") params.maxPrice = maxPrice;
+        const params = {};
+        if (subCategory) params.subCategory = subCategory;
+        if (minPrice && minPrice !== "") params.minPrice = minPrice;
+        if (maxPrice && maxPrice !== "") params.maxPrice = maxPrice;
 
-      const res = await axiosInstance.get(`/products/category/${categoryName}`, { params });
-      let data = res.data;
+        const res = await axiosInstance.get(
+          `/products/category/${categoryName}`,
+          { params }
+        );
+        let data = res.data;
 
-      // Local sorting
-      if (priceOrder === "low-high") data.sort((a, b) => a.price - b.price);
-      if (priceOrder === "high-low") data.sort((a, b) => b.price - a.price);
-      if (sortOption === "a-z") data.sort((a, b) => a.name.localeCompare(b.name));
-      if (sortOption === "z-a") data.sort((a, b) => b.name.localeCompare(a.name));
+        // Local sorting
+        if (priceOrder === "low-high") data.sort((a, b) => a.price - b.price);
+        if (priceOrder === "high-low") data.sort((a, b) => b.price - a.price);
+        if (sortOption === "a-z")
+          data.sort((a, b) => a.name.localeCompare(b.name));
+        if (sortOption === "z-a")
+          data.sort((a, b) => b.name.localeCompare(a.name));
 
-      setProducts(data);
-    } catch (error) {
-      console.error("❌ Error fetching products:", error.response?.data || error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+        setProducts(data);
+      } catch (error) {
+        console.error(
+          "❌ Error fetching products:",
+          error.response?.data || error.message
+        );
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  fetchProducts();
-}, [categoryName, subCategory, priceOrder, sortOption, minPrice, maxPrice]);
+    fetchProducts();
+  }, [categoryName, subCategory, priceOrder, sortOption, minPrice, maxPrice]);
 
   const handleProductClick = (id) => {
     if (isLoggedIn) {
@@ -87,48 +97,82 @@ const CategoryPage = () => {
       navigate("/login");
     }
   };
-const hideFilter =
-  categoryName === "school-shoes" || categoryName === "accessories";
+  const hideFilter =
+    categoryName === "school-shoes" || categoryName === "accessories";
 
   return (
     <div className="category-page">
       <h2 className="category-title">{categoryName.replace("-", " ")}</h2>
+      {!hideFilter && (
+        <div>
+          <h2>{categoryName.toUpperCase()}</h2>
+          <input
+            type="number"
+            placeholder="Min Price"
+            value={minPrice}
+            onChange={(e) => setMinPrice(e.target.value)}
+          />
+          <input
+            type="number"
+            placeholder="Max Price"
+            value={maxPrice}
+            onChange={(e) => setMaxPrice(e.target.value)}
+          />
 
-      {!hideFilter &&
-      <div className="filter-bar">
-        <div className="filter-group">
-          <label>Filter:</label>
-          <select value={subCategory} onChange={(e) => setSubCategory(e.target.value)}>
-            <option value="">All</option>
-            {subCategories.map((s) => (
-              <option key={s} value={s}>
-                {s}
-              </option>
-            ))}
-          </select>
+          {loading ? (
+            <p>Loading...</p>
+          ) : (
+            products.map((p) => (
+              <div key={p._id}>
+                {p.name} — ₹{p.price}
+              </div>
+            ))
+          )}
         </div>
-      
+      )}
 
-        <div className="filter-group">
-          <label>Price:</label>
-          <select value={priceOrder} onChange={(e) => setPriceOrder(e.target.value)}>
-            <option value="">Default</option>
-            <option value="low-high">Low to High</option>
-            <option value="high-low">High to Low</option>
-          </select>
-        </div>
+      {!hideFilter && (
+        <div className="filter-bar">
+          <div className="filter-group">
+            <label>Filter:</label>
+            <select
+              value={subCategory}
+              onChange={(e) => setSubCategory(e.target.value)}
+            >
+              <option value="">All</option>
+              {subCategories.map((s) => (
+                <option key={s} value={s}>
+                  {s}
+                </option>
+              ))}
+            </select>
+          </div>
 
-        <div className="filter-group">
-          <label>Sort:</label>
-          <select value={sortOption} onChange={(e) => setSortOption(e.target.value)}>
-            <option value="">Default</option>
-            <option value="a-z">A - Z</option>
-            <option value="z-a">Z - A</option>
-          </select>
+          <div className="filter-group">
+            <label>Price:</label>
+            <select
+              value={priceOrder}
+              onChange={(e) => setPriceOrder(e.target.value)}
+            >
+              <option value="">Default</option>
+              <option value="low-high">Low to High</option>
+              <option value="high-low">High to Low</option>
+            </select>
+          </div>
+
+          <div className="filter-group">
+            <label>Sort:</label>
+            <select
+              value={sortOption}
+              onChange={(e) => setSortOption(e.target.value)}
+            >
+              <option value="">Default</option>
+              <option value="a-z">A - Z</option>
+              <option value="z-a">Z - A</option>
+            </select>
+          </div>
         </div>
-      </div>
-      
-        }
+      )}
 
       {loading ? (
         <p className="loading-text">Loading...</p>
@@ -137,7 +181,11 @@ const hideFilter =
       ) : (
         <div className="product-grid-container">
           {products.map((p) => (
-            <div key={p._id} className="product-card" onClick={() => handleProductClick(p._id)}>
+            <div
+              key={p._id}
+              className="product-card"
+              onClick={() => handleProductClick(p._id)}
+            >
               <div className="product-img-wrapper">
                 <img src={p.images?.[0]} alt={p.name} className="product-img" />
               </div>
