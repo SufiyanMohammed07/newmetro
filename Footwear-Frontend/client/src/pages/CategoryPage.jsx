@@ -16,40 +16,69 @@ const CategoryPage = () => {
 
   const subCategories = ["DailyWear", "PartyWear", "OfficeWear", "Casual"];
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        setLoading(true);
-        // let url = `http://localhost:3030/api/products/category/${categoryName}`;
-        // let url = `/products/category/${categoryName}`;
+  // useEffect(() => {
+  //   const fetchProducts = async () => {
+  //     try {
+  //       setLoading(true);
+  //       // let url = `http://localhost:3030/api/products/category/${categoryName}`;
+  //       // let url = `/products/category/${categoryName}`;
 
-        const params = [];
+  //       const params = [];
 
-        if (subCategory) params.push(`subCategory=${subCategory}`);
-        if (params.length) url += "?" + params.join("&");
+  //       if (subCategory) params.push(`subCategory=${subCategory}`);
+  //       if (params.length) url += "?" + params.join("&");
 
-        // const res = await axiosInstance.get(url);
-        //  const res = await axiosInstance.get(url, { params });
-        const res = await axiosInstance.get(`/products/category/${categoryName}`,{params});
-        //checking
+  //       // const res = await axiosInstance.get(url);
+  //       //  const res = await axiosInstance.get(url, { params });
+  //       const res = await axiosInstance.get(`/products/category/${categoryName}`,{params});
+  //       //checking
 
-        let data = res.data;
+  //       let data = res.data;
 
-        // Apply local sorting by price or name
-        if (priceOrder === "low-high") data.sort((a, b) => a.price - b.price);
-        if (priceOrder === "high-low") data.sort((a, b) => b.price - a.price);
-        if (sortOption === "a-z") data.sort((a, b) => a.name.localeCompare(b.name));
-        if (sortOption === "z-a") data.sort((a, b) => b.name.localeCompare(a.name));
+  //       // Apply local sorting by price or name
+  //       if (priceOrder === "low-high") data.sort((a, b) => a.price - b.price);
+  //       if (priceOrder === "high-low") data.sort((a, b) => b.price - a.price);
+  //       if (sortOption === "a-z") data.sort((a, b) => a.name.localeCompare(b.name));
+  //       if (sortOption === "z-a") data.sort((a, b) => b.name.localeCompare(a.name));
 
-        setProducts(data);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchProducts();
-  }, [categoryName, subCategory, priceOrder, sortOption]);
+  //       setProducts(data);
+  //     } catch (error) {
+  //       console.error("Error fetching products:", error);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+  //   fetchProducts();
+  // }, [categoryName, subCategory, priceOrder, sortOption]);
+ useEffect(() => {
+  const fetchProducts = async () => {
+    try {
+      setLoading(true);
+
+      const params = {};
+      if (subCategory) params.subCategory = subCategory;
+      if (minPrice && minPrice !== "") params.minPrice = minPrice;
+      if (maxPrice && maxPrice !== "") params.maxPrice = maxPrice;
+
+      const res = await axiosInstance.get(`/products/category/${categoryName}`, { params });
+      let data = res.data;
+
+      // Local sorting
+      if (priceOrder === "low-high") data.sort((a, b) => a.price - b.price);
+      if (priceOrder === "high-low") data.sort((a, b) => b.price - a.price);
+      if (sortOption === "a-z") data.sort((a, b) => a.name.localeCompare(b.name));
+      if (sortOption === "z-a") data.sort((a, b) => b.name.localeCompare(a.name));
+
+      setProducts(data);
+    } catch (error) {
+      console.error("❌ Error fetching products:", error.response?.data || error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchProducts();
+}, [categoryName, subCategory, priceOrder, sortOption, minPrice, maxPrice]);
 
   const handleProductClick = (id) => {
     if (isLoggedIn) {
