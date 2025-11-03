@@ -5,7 +5,7 @@ import styles from "./AdminDashboard.module.css";
 const AdminDashboard = () => {
   const [name, setName] = useState("");
   const [category, setCategory] = useState("");
-  const [subCategory, setSubCategory] = useState("");
+  // const [subCategory, setSubCategory] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
   const [images, setImages] = useState([]);
@@ -35,7 +35,7 @@ const AdminDashboard = () => {
     const formData = new FormData();
     formData.append("name", name);
     formData.append("category", category);
-    formData.append("subCategory", subCategory);
+    // formData.append("subCategory", subCategory);
     formData.append("price", price);
     formData.append("description", description);
 
@@ -81,7 +81,7 @@ const AdminDashboard = () => {
           onChange={(e) => setName(e.target.value)}
           required
         />
-        {/* <select
+        <select
           value={category}
           onChange={(e) => setCategory(e.target.value)}
           required
@@ -100,8 +100,8 @@ const AdminDashboard = () => {
           <option value="unisex">Unisex</option>
           <option value="school-shoes">School Shoes</option>
           <option value="accessories">Accessories</option>
-        </select> */}
-        <select
+        </select>
+        {/* <select
   value={subCategory}
   onChange={(e) => setSubCategory(e.target.value)}
   required
@@ -115,7 +115,6 @@ const AdminDashboard = () => {
 >
   <option value="">Select Sub Category</option>
 
-  {/* For Her */}
   {category === "for-her" && (
     <>
       <option value="heels">Heels</option>
@@ -124,7 +123,6 @@ const AdminDashboard = () => {
     </>
   )}
 
-  {/* For Him */}
   {category === "for-him" && (
     <>
       <option value="formal">Formal</option>
@@ -132,8 +130,6 @@ const AdminDashboard = () => {
       <option value="sneakers">Sneakers</option>
     </>
   )}
-
-  {/* Kids */}
   {category === "kids" && (
     <>
       <option value="boys">Boys</option>
@@ -142,7 +138,6 @@ const AdminDashboard = () => {
     </>
   )}
 
-  {/* Others */}
   {category === "unisex" && (
     <>
       <option value="casual">Casual</option>
@@ -151,7 +146,7 @@ const AdminDashboard = () => {
   )}
   {category === "school-shoes" && <option value="uniform">Uniform</option>}
   {category === "accessories" && <option value="belts">Belts</option>}
-</select>
+</select> */}
 
 
         <input
@@ -194,3 +189,6 @@ const AdminDashboard = () => {
 };
 
 export default AdminDashboard;
+
+
+
