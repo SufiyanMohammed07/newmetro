@@ -17,15 +17,15 @@ const ProductCard = ({ product }) => {
     navigate(`/product/${product._id}`);
   };
   const sliderSettings = {
-    dots: false,
-    arrows: false,
+      dots: false,
+    arrows: true,
     infinite: true,
-    autoplay: true,
-    autoplaySpeed: 1200,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    pauseOnHover: false,
+    autoplay: isHovered, 
+    autoplaySpeed: 2500,
+    speed: 800, 
+    slidesToShow: 0,
+    slidesToScroll:0,
+    pauseOnHover: true,
   };
 
   return (
@@ -61,3 +61,5 @@ const ProductCard = ({ product }) => {
 };
 
 export default ProductCard;
+
+

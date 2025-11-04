@@ -135,16 +135,9 @@ const ProductDetails = () => {
             {product.description || "No description available."}
           </p>
 
-          <div className="product-sizes">
+          {/* <div className="product-sizes">
             <h4>Available Sizes</h4>
             <br />
-            {/* <div className="size-options">
-              {sizes.map((size) => (
-                <div key={size} className="size-box">
-                  {size}
-                </div>
-              ))}
-            </div> */}
             <div className="size-options">
   {sizes.map((size, index) => (
     <div key={`${size}-${index}`} className="size-box">
@@ -153,8 +146,21 @@ const ProductDetails = () => {
   ))}
 </div>
 
-          </div>
+          </div> */}
 
+{sizes.length > 0 && (
+  <div className="product-sizes">
+    <h4>Available Sizes</h4>
+    <br />
+    <div className="size-options">
+      {sizes.map((size, index) => (
+        <div key={`${size}-${index}`} className="size-box">
+          {size}
+        </div>
+      ))}
+    </div>
+  </div>
+)}
           <button onClick={handleWhatsAppContact} className="whatsapp-button">
             <FaWhatsapp size={20} style={{ marginRight: "8px" }} />
             Contact on WhatsApp
