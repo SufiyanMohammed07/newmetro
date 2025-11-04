@@ -49,6 +49,10 @@
   padding: 0;
   margin: 0;
 }
+.footer-column ul li a{
+  text-decoration: none;
+  color: #555;
+}
 
 .footer-column ul li {
   margin-bottom: 10px;
@@ -56,6 +60,7 @@
   color: #555;
   cursor: pointer;
   transition: color 0.3s ease;
+  
 }
 
 .footer-column ul li:hover {

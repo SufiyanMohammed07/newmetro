@@ -18,40 +18,6 @@ const CategoryPage = () => {
 
   const subCategories = ["DailyWear", "PartyWear", "OfficeWear", "Casual"];
 
-  // useEffect(() => {
-  //   const fetchProducts = async () => {
-  //     try {
-  //       setLoading(true);
-  //       // let url = `http://localhost:3030/api/products/category/${categoryName}`;
-  //       // let url = `/products/category/${categoryName}`;
-
-  //       const params = [];
-
-  //       if (subCategory) params.push(`subCategory=${subCategory}`);
-  //       if (params.length) url += "?" + params.join("&");
-
-  //       // const res = await axiosInstance.get(url);
-  //       //  const res = await axiosInstance.get(url, { params });
-  //       const res = await axiosInstance.get(`/products/category/${categoryName}`,{params});
-  //       //checking
-
-  //       let data = res.data;
-
-  //       // Apply local sorting by price or name
-  //       if (priceOrder === "low-high") data.sort((a, b) => a.price - b.price);
-  //       if (priceOrder === "high-low") data.sort((a, b) => b.price - a.price);
-  //       if (sortOption === "a-z") data.sort((a, b) => a.name.localeCompare(b.name));
-  //       if (sortOption === "z-a") data.sort((a, b) => b.name.localeCompare(a.name));
-
-  //       setProducts(data);
-  //     } catch (error) {
-  //       console.error("Error fetching products:", error);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-  //   fetchProducts();
-  // }, [categoryName, subCategory, priceOrder, sortOption]);
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -102,77 +68,76 @@ const CategoryPage = () => {
 
   return (
     <div className="category-page">
-      <h2 className="category-title">{categoryName.replace("-", " ")}</h2>
+      
       {!hideFilter && (
-        <div>
-          <h2>{categoryName.toUpperCase()}</h2>
-          <input
-            type="number"
-            placeholder="Min Price"
-            value={minPrice}
-            onChange={(e) => setMinPrice(e.target.value)}
-          />
-          <input
-            type="number"
-            placeholder="Max Price"
-            value={maxPrice}
-            onChange={(e) => setMaxPrice(e.target.value)}
-          />
+  <>
+    <h2 className="category-title">{categoryName.replace("-", " ")}</h2>
 
-          {loading ? (
-            <p>Loading...</p>
-          ) : (
-            products.map((p) => (
-              <div key={p._id}>
-                {p.name} — ₹{p.price}
-              </div>
-            ))
-          )}
-        </div>
-      )}
+    <div className="filter-bar">
+      <div className="filter-group">
+        <label>Min Price:</label>
+        <input
+          type="number"
+          placeholder="Min"
+          value={minPrice}
+          onChange={(e) => setMinPrice(e.target.value)}
+          className="price-input"
+        />
+      </div>
 
-      {!hideFilter && (
-        <div className="filter-bar">
-          <div className="filter-group">
-            <label>Filter:</label>
-            <select
-              value={subCategory}
-              onChange={(e) => setSubCategory(e.target.value)}
-            >
-              <option value="">All</option>
-              {subCategories.map((s) => (
-                <option key={s} value={s}>
-                  {s}
-                </option>
-              ))}
-            </select>
-          </div>
+      <div className="filter-group">
+        <label>Max Price:</label>
+        <input
+          type="number"
+          placeholder="Max"
+          value={maxPrice}
+          onChange={(e) => setMaxPrice(e.target.value)}
+          className="price-input"
+        />
+      </div>
 
-          <div className="filter-group">
-            <label>Price:</label>
-            <select
-              value={priceOrder}
-              onChange={(e) => setPriceOrder(e.target.value)}
-            >
-              <option value="">Default</option>
-              <option value="low-high">Low to High</option>
-              <option value="high-low">High to Low</option>
-            </select>
-          </div>
+      <div className="filter-group">
+        <label>Filter:</label>
+        <select
+          value={subCategory}
+          onChange={(e) => setSubCategory(e.target.value)}
+        >
+          <option value="">All</option>
+          {subCategories.map((s) => (
+            <option key={s} value={s}>
+              {s}
+            </option>
+          ))}
+        </select>
+      </div>
 
-          <div className="filter-group">
-            <label>Sort:</label>
-            <select
-              value={sortOption}
-              onChange={(e) => setSortOption(e.target.value)}
-            >
-              <option value="">Default</option>
-              <option value="a-z">A - Z</option>
-              <option value="z-a">Z - A</option>
-            </select>
-          </div>
-        </div>
-      )}
+      <div className="filter-group">
+        <label>Price:</label>
+        <select
+          value={priceOrder}
+          onChange={(e) => setPriceOrder(e.target.value)}
+        >
+          <option value="">Default</option>
+          <option value="low-high">Low to High</option>
+          <option value="high-low">High to Low</option>
+        </select>
+      </div>
+
+      <div className="filter-group">
+        <label>Sort:</label>
+        <select
+          value={sortOption}
+          onChange={(e) => setSortOption(e.target.value)}
+        >
+          <option value="">Default</option>
+          <option value="a-z">A - Z</option>
+          <option value="z-a">Z - A</option>
+        </select>
+      </div>
+    </div>
+  </>
+)}
+
 
       {loading ? (
         <p className="loading-text">Loading...</p>
