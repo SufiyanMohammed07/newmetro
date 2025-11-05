@@ -59,10 +59,16 @@ router.post("/add", verifyToken, verifyAdmin, upload.array("images", 5), async (
     // Convert all images to white background (JPEG)
     const processedImages = await Promise.all(
       req.files.map(async (file) => {
+        // const processedBuffer = await sharp(file.buffer)
+        //   .flatten({ background: "#ffffff" }) 
+        //   .jpeg({ quality: 90 })
+        //   .toBuffer();
         const processedBuffer = await sharp(file.buffer)
-          .flatten({ background: "#ffffff" }) // fills transparent areas with white
-          .jpeg({ quality: 90 })
-          .toBuffer();
+  .resize({ width: 1000, height: 1000, fit: "contain", background: "#ffffff" }) // ensures white background
+  .flatten({ background: "#ffffff" }) // fills transparent areas too
+  .jpeg({ quality: 90 })
+  .toBuffer();
+
 
         // Reuse your S3 upload function
         return await uploadToS3({ ...file, buffer: processedBuffer });
