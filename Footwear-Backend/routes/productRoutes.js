@@ -6,12 +6,9 @@ const upload = multer({
   storage: multer.memoryStorage(),
   limits: { fileSize: 10 * 1024 * 1024 }, 
 });
-
 import { verifyToken } from "../utils/jwtMiddleware.js";
 import { verifyAdmin } from "../utils/adminMiddleware.js";
-
 const router = express.Router();
-
 router.post(
   "/add",
   verifyToken,
@@ -49,15 +46,27 @@ router.post(
 );
 
 
+// router.get("/", async (req, res) => {
+//   try {
+//     const products = await Product.find().sort({ createdAt: -1 });
+//     res.json(products);
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).json({ error: err.message });
+//   }
+// });
 router.get("/", async (req, res) => {
   try {
-    const products = await Product.find().sort({ createdAt: -1 });
+    const products = await Product.aggregate([
+      { $sample: { size: 20 } }
+    ]);
     res.json(products);
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: err.message });
+    console.error("Error fetching random products:", err);
+    res.status(500).json({ error: "Server error" });
   }
 });
+
 
 router.get("/:id", async (req, res) => {
   try {
@@ -69,12 +78,11 @@ router.get("/:id", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
 router.get("/category/:category", async (req, res) => {
   try {
     const { category } = req.params;
     const { subCategory, minPrice, maxPrice } = req.query;
-
-    // Build dynamic filter
     const filter = { category };
     if (subCategory) filter.subCategory = subCategory;
     if (minPrice || maxPrice) {
@@ -82,17 +90,12 @@ router.get("/category/:category", async (req, res) => {
       if (minPrice) filter.price.$gte = Number(minPrice);
       if (maxPrice) filter.price.$lte = Number(maxPrice);
     }
-
     const products = await Product.find(filter);
     res.json(products);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
-
-
-
-
 router.delete("/:id", verifyToken, verifyAdmin, async (req, res) => {
   try {
     const product = await Product.findByIdAndDelete(req.params.id);
@@ -103,7 +106,6 @@ router.delete("/:id", verifyToken, verifyAdmin, async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-
 router.put("/:id", verifyToken, verifyAdmin, async (req, res) => {
   try {
     const { name, category, price, description } = req.body;
@@ -122,5 +124,4 @@ router.put("/:id", verifyToken, verifyAdmin, async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-
 export default router;
