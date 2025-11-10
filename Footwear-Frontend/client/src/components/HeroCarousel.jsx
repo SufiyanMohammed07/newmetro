@@ -10,9 +10,9 @@ const slidesData = [
     promo: "EXTRA 10% OFF:",
     promoCode: "NEWCF510",
     ctaText: "GET A PAIR NOW",
-    ctaLink: "/products/cloud-flex-slip-ons",
+    ctaLink: "/products/690ca169482f1721627553b1",
     imageUrl:
-      "https://amzon-metro-bucket.s3.ap-southeast-1.amazonaws.com/3ea018859205bf46bfa2e5553d0d6000-canvas.webp",
+      "https://amzon-metro-bucket.s3.ap-southeast-1.amazonaws.com/496d6f195071ac0e2e9b916d80c50395-20251106_184211.jpg",
   },
 
   {
