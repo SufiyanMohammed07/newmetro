@@ -55,10 +55,28 @@ router.post(
 //     res.status(500).json({ error: err.message });
 //   }
 // });
+// router.get("/", async (req, res) => {
+//   try {
+//     const products = await Product.aggregate([
+//       { $sample: { size: 20 } }
+//     ]);
+//     res.json(products);
+//   } catch (err) {
+//     console.error("Error fetching random products:", err);
+//     res.status(500).json({ error: "Server error" });
+//   }
+// });
 router.get("/", async (req, res) => {
   try {
     const products = await Product.aggregate([
-      { $sample: { size: 20 } }
+      {
+        $match: {
+          imageUrl: { $exists: true, $ne: "" },
+          name: { $exists: true, $ne: "" },
+          price: { $exists: true },
+        },
+      },
+      { $sample: { size: 20 } },
     ]);
     res.json(products);
   } catch (err) {
@@ -66,6 +84,7 @@ router.get("/", async (req, res) => {
     res.status(500).json({ error: "Server error" });
   }
 });
+
 
 
 router.get("/:id", async (req, res) => {

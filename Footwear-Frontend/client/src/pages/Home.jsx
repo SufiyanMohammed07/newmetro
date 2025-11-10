@@ -63,9 +63,22 @@ useEffect(() => {
       <HeroCarousel/>
       <h2 style={{ textAlign: "center", marginBottom: "30px" }}>Our Footwear Collection</h2>
         <div className="product-grid-container">
-      {products.map((product) => (
+      {/* {products.map((product) => (
         <ProductCard key={product._id} product={product} />
-      ))}
+      ))} */}
+      {Array.isArray(products) && products.length > 0 ? (
+  products.map(
+    (product) =>
+      product?.imageUrl && (
+        <ProductCard key={product._id} product={product} />
+      )
+  )
+) : (
+  <p style={{ textAlign: "center", color: "#777" }}>
+    No products available right now.
+  </p>
+)}
+
     </div>
     </div>
     </>
