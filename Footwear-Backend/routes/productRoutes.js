@@ -107,12 +107,6 @@ router.get("/", async (req, res) => {
 });
 
 
-
-
-
-
-
-
 router.get("/:id", async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
