@@ -45,7 +45,7 @@ const Navbar = () => {
         }}
       >
         <p>Closure Sale ends today ✨</p>
-        <div className="logo">Buy 2 - Get 10% | Buy 4 - Get 25%</div>
+        <div className="logo">Buy 2 - Get 5% | Buy 4 - Get 15%</div>
       </div>
 
       <header className={styles.header}>

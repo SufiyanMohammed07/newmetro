@@ -10,7 +10,7 @@ const slidesData = [
     promo: "EXTRA 10% OFF:",
     promoCode: "NEWCF510",
     ctaText: "GET A PAIR NOW",
-    ctaLink: "/products/690ca169482f1721627553b1",
+    ctaLink: "/product/690ca169482f1721627553b1",
     imageUrl:
       "https://amzon-metro-bucket.s3.ap-southeast-1.amazonaws.com/496d6f195071ac0e2e9b916d80c50395-20251106_184211.jpg",
   },
@@ -23,9 +23,9 @@ const slidesData = [
     promo: "UP TO 40% OFF:",
     promoCode: "WEEKEND40",
     ctaText: "SHOP THE SALE",
-    ctaLink: "/collections/sale",
+    ctaLink: "/product/690b5071482f1721627552fe",
     imageUrl:
-      "https://amzon-metro-bucket.s3.ap-southeast-1.amazonaws.com/4c08b9bfb2a9b49ba5b4001e4c456529-nike.jpeg",
+      "https://amzon-metro-bucket.s3.ap-southeast-1.amazonaws.com/149b5d9c4b666509d3c00b8487da1912-20251105_184615.jpg",
   },
 
   {
@@ -36,9 +36,9 @@ const slidesData = [
     promo: "CARBON FIBER PLATE:",
     promoCode: "ULTRAFAST",
     ctaText: "EXPLORE TRAINERS",
-    ctaLink: "/products/aero-lite-trainer",
+    ctaLink: "/product/690c9b75482f17216275538e",
     imageUrl:
-      "https://amzon-metro-bucket.s3.ap-southeast-1.amazonaws.com/906a75159327bd1e22aa171653d7194b-paragonhawai.webp",
+      "https://amzon-metro-bucket.s3.ap-southeast-1.amazonaws.com/dbf71b3ad59cd571371be83bd3f7afa7-20251106_181222.jpg",
   },
 
   {
@@ -49,32 +49,32 @@ const slidesData = [
     promo: "100% VEGAN LEATHER:",
     promoCode: "GOECO",
     ctaText: "DISCOVER SUSTAINABLE",
-    ctaLink: "/collections/sustainable",
-    imageUrl: "path/to/your/eco-shoes-image.jpg",
+    ctaLink: "/product/690c8e17482f172162755378",
+    imageUrl: "https://amzon-metro-bucket.s3.ap-southeast-1.amazonaws.com/95392ed4901b074df26653c31e55e302-20251106_172232.jpg",
   },
 
   {
     id: 5,
     headline: "FALL TRENDS ARE FINALLY HERE.",
     subtext: "Introducing the new",
-    product: "Heritage Leather Boots",
+    product: "Red Apple Leather Formal Shoes",
     promo: "LIMITED EDITION STYLES:",
     promoCode: "NEWFALL23",
     ctaText: "SHOP NEW ARRIVALS",
-    ctaLink: "/collections/new-fall",
-    imageUrl: "path/to/your/boots-image.jpg",
+    ctaLink: "/product/690c99d7482f172162755382",
+    imageUrl: "https://amzon-metro-bucket.s3.ap-southeast-1.amazonaws.com/2280b4e067025db81ea20daa6eecaaf5-20251106_181335.jpg",
   },
 
   {
     id: 6,
     headline: "BUILT TO LAST. DESIGNED TO STUN.",
-    subtext: "Guaranteed waterproof",
-    product: "Adventure Hiker Pro ⛰️",
-    promo: "2-YEAR WARRANTY:",
+    subtext: "Guaranteed Product",
+    product: "Party Wear ⛰️",
+    promo: "1-YEAR WARRANTY:",
     promoCode: "PROTECT",
     ctaText: "VIEW DETAILS",
-    ctaLink: "/products/adventure-hiker-pro",
-    imageUrl: "path/to/your/hiker-boot-image.jpg",
+    ctaLink: "/product/690c8d0b482f172162755370",
+    imageUrl: "https://amzon-metro-bucket.s3.ap-southeast-1.amazonaws.com/0cf10c8a81dd0d3fbce9c3842303a6d1-20251106_171007.jpg",
   },
 ];
 
@@ -93,11 +93,13 @@ const HeroCarousel = () => {
 
   return (
     <div className="hero-carousel-container">
-      <a
+      <a  
         href={currentSlideData.ctaLink}
         className="hero-carousel-slide"
         aria-label={`Shop the ${currentSlideData.product} collection`}
       >
+     
+
         <div className="hero-content-wrapper">
           <p className="hero-subtext">{currentSlideData.subtext}</p>
           <h2 className="hero-headline">
