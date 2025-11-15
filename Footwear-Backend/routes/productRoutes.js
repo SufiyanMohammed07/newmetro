@@ -45,45 +45,12 @@ router.post(
   }
 );
 
-
-// router.get("/", async (req, res) => {
-//   try {
-//     const products = await Product.find().sort({ createdAt: -1 });
-//     res.json(products);
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).json({ error: err.message });
-//   }
-// });
-// router.get("/", async (req, res) => {
-//   try {
-//     const totalProducts = await Product.countDocuments();
-
-//     // If you have fewer than 20 products, just return them all
-//     if (totalProducts <= 20) {
-//       const products = await Product.find().sort({ createdAt: -1 });
-//       return res.json(products);
-//     }
-
-//     // Otherwise, fetch 20 random ones
-//     const products = await Product.aggregate([
-//       { $sample: { size: 20 } },
-//     ]);
-
-//     res.json(products);
-//   } catch (err) {
-//     console.error("Error fetching random products:", err);
-//     res.status(500).json({ error: "Server error" });
-//   }
-// });
-
 //pagination implemetation
 router.get("/", async (req, res) => {
   try {
-    const page = parseInt(req.query.page) || 1; // current page
+    const page = parseInt(req.query.page) || 1; 
     const limit = 20; // products per page
     const skip = (page - 1) * limit;
-
     const totalProducts = await Product.countDocuments();
     const totalPages = Math.ceil(totalProducts / limit);
 
