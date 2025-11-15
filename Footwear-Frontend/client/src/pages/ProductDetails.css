@@ -1,3 +1,18 @@
+/* Prevent ANY overflow on mobile ADDED */
+* {
+  box-sizing: border-box;
+}
+
+body, html {
+  overflow-x: hidden !important;
+}
+
+.product-details-container,
+.product-wrapper {
+  overflow-x: hidden !important;
+}
+
+
 .product-details-container {
   display: flex;
   justify-content: center;
@@ -126,7 +141,7 @@
   background-color: #1ebc59;
 }
 
-@media (max-width: 992px) {
+/* @media (max-width: 992px) {
   .product-wrapper {
     flex-direction: column;
     align-items: center;
@@ -155,4 +170,52 @@
   .product-info {
     padding: 0 10px;
   }
+} */
+
+
+/* Tablet & Mobile */
+@media (max-width: 992px) {
+  .product-wrapper {
+    flex-direction: column;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center;
+    width: 100% !important;
+    margin: 0 auto;
+  }
+
+  .product-images, .product-info {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  .slider-image-wrapper {
+    height: 360px;
+  }
+}
+
+/* Mobile Phones */
+@media (max-width: 576px) {
+  .product-wrapper {
+    padding: 0 10px;
+  }
+
+  .slider-image-wrapper {
+    height: 280px;
+  }
+
+  .product-title {
+    font-size: 22px;
+  }
+}
+
+
+.slick-slide {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+
+.slick-track {
+  display: flex !important;
 }

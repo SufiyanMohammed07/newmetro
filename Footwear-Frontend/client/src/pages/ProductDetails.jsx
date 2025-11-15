@@ -105,6 +105,12 @@ const ProductDetails = () => {
             <Slider {...sliderSettings}>
               {product.images.map((imgUrl, index) => (
                 <div key={index} className="slider-image-wrapper">
+                  {/* <img
+                    src={imgUrl}
+                    alt={`${product.name}-${index}`}
+                    className="product-image"
+                    onError={(e) => (e.target.src = "/placeholder.jpg")}
+                  /> */}
                   <img
                     src={imgUrl}
                     alt={`${product.name}-${index}`}
@@ -148,19 +154,19 @@ const ProductDetails = () => {
 
           </div> */}
 
-{sizes.length > 0 && (
-  <div className="product-sizes">
-    <h4>Available Sizes</h4>
-    <br />
-    <div className="size-options">
-      {sizes.map((size, index) => (
-        <div key={`${size}-${index}`} className="size-box">
-          {size}
-        </div>
-      ))}
-    </div>
-  </div>
-)}
+          {sizes.length > 0 && (
+            <div className="product-sizes">
+              <h4>Available Sizes</h4>
+              <br />
+              <div className="size-options">
+                {sizes.map((size, index) => (
+                  <div key={`${size}-${index}`} className="size-box">
+                    {size}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
           <button onClick={handleWhatsAppContact} className="whatsapp-button">
             <FaWhatsapp size={20} style={{ marginRight: "8px" }} />
             Contact on WhatsApp
