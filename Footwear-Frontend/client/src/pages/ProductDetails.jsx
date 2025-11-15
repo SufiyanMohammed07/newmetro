@@ -15,6 +15,10 @@ const ProductDetails = () => {
 
   const whatsappNumber = "919573800201";
   const isLoggedIn = localStorage.getItem("token");
+  
+    useEffect(() => {
+  window.scrollTo(0, 0);
+}, []);
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -33,6 +37,9 @@ const ProductDetails = () => {
       setLoading(false);
     }
   }, [id, isLoggedIn]);
+
+
+
 
   if (!isLoggedIn) {
     return (

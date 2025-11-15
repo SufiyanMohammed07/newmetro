@@ -96,7 +96,7 @@ const CategoryPage = () => {
         />
       </div>
 
-      <div className="filter-group">
+      {/* <div className="filter-group">
         <label>Filter:</label>
         <select
           value={subCategory}
@@ -109,7 +109,7 @@ const CategoryPage = () => {
             </option>
           ))}
         </select>
-      </div>
+      </div> */}
 
       <div className="filter-group">
         <label>Price:</label>
